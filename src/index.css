@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Chiki';
+  src: url(./assets/fonts/Chiki-MVRZw.otf) format('opentype');
+}
+
+@layer base {
+  html {
+    font-family: Chiki, sans-serif;
+  }
+}
