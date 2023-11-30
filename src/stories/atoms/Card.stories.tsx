@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Card, CardRefType } from "../../components/presentational/Card/Card";
 
 const meta = {
-  title: 'Molecules/Card',
+  title: 'Atoms/Card',
   component: Card,
   decorators: [(story) => <div className="h-48 w-48">{story()}</div>],
 } satisfies Meta<typeof Card>;

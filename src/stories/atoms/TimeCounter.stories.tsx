@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TimeCounter } from "../../components/presentational/TimeCounter/TimeCounter";
 
 const meta = {
-  title: 'Molecules/TimeCounter',
+  title: 'Atoms/TimeCounter',
   component: TimeCounter,
 } satisfies Meta<typeof TimeCounter>;
 
