@@ -21,7 +21,7 @@ export const TimeCounter = () => {
 
   return (
     <div className="text-center">
-      <div className="text-4xl text-primary">Time left:</div>
+      <div className="text-4xl text-primary">🛎️ Time left:</div>
       <div className={`text-6xl ${counter > 19 ? "text-quaternary" : "text-red"}`}>
         {counter}
       </div>
