@@ -44,7 +44,7 @@ export const Card = forwardRef(({emoji, initialShowBack = true, disabled}: Props
         timeout={300}
         classNames='flip'
       >
-        <button disabled={disabled} className="card h-full w-full relative shadow-xl select-none rounded-xl" onClick={handleCardClick}> 
+        <button disabled={disabled} className="card h-full w-full relative shadow-xl select-none rounded-xl aspect-square" onClick={handleCardClick}> 
           <div className="back absolute w-full h-full top-0 border-primary border-8 rounded-xl text-center flex items-center justify-center bg-tertiary">
             <div className="text-4xl origin-bottom-left text-primary">Emoji<br />Memory<br />game</div>
           </div>

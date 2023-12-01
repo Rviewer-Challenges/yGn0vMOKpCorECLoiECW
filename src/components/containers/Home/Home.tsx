@@ -1,6 +1,15 @@
+import { useNavigate } from 'react-router-dom';
+
+// Styles
 import './Home.css';
 
 export const Home = () => {
+  const navigate = useNavigate();
+
+  const startGameHandler = () => {
+    navigate('/select-difficulty');
+  }
+
   return (
     <div className="h-screen w-screen bg-cover bg-[url('src/assets/images/background.svg')]">
       <div className="flex flex-col opacity-100 items-center justify-center h-full p-4">
@@ -14,7 +23,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <button className="bg-quaternary rounded-lg p-4 text-white text-xl">
+            <button onClick={startGameHandler} className="bg-quaternary rounded-lg p-4 text-white text-xl">
               Start game 🚀
             </button>
           </div>

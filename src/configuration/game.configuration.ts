@@ -1,17 +1,19 @@
+import { Level } from "../models/level.model";
+
 export const emojis = ['🎅', '🎄', '❄️', '🎁', '🥂', '🌠', '☃️', '⛄',
-  '🫎', '🌨️', '🏂', '🤶', '🧑‍🎄', '🎉', '💫', '🧦', '🥛', '🧝', '🧝‍♂️',
+  '🫎', '🌨️', '🤶', '🧑‍🎄', '🎉', '💫', '🧦', '🥛',
   '🧝‍♀️', '🌟', '🍪', '🦌', '🕯️', '👼', '🥳', '🎊'];
 
-export const dificulties = [{
-  level: 'easy',
+export const levels: Level[] = [{
+  name: 'easy',
   verticalCards: 4,
   horizontalCards: 4,
 }, {
-  level: 'medium',
-  verticalCards: 4,
-  horizontalCards: 6,
+  name: 'medium',
+  verticalCards: 6,
+  horizontalCards: 4,
 }, {
-  level: 'hard',
-  verticalCards: 5,
-  horizontalCards: 6,
+  name: 'difficult',
+  verticalCards: 6,
+  horizontalCards: 5,
 }];
