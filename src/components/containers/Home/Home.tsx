@@ -6,7 +6,7 @@ import './Home.css';
 export const Home = () => {
   const navigate = useNavigate();
 
-  const startGameHandler = () => {
+  const StartGameHandler = () => {
     navigate('/select-difficulty');
   }
 
@@ -23,7 +23,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <button onClick={startGameHandler} className="bg-quaternary rounded-lg p-4 text-white text-xl">
+            <button onClick={StartGameHandler} className="bg-quaternary rounded-lg p-4 text-white text-xl">
               Start game 🚀
             </button>
           </div>

@@ -9,6 +9,7 @@ type Props = {
   emoji: string;
   initialShowBack?: boolean;
   disabled?: boolean;
+  onClick: () => void;
 }
 
 export type CardRefType = {
@@ -19,7 +20,7 @@ export type CardRefType = {
  * @component
  * @param {React.Ref<CardRefType>} ref - The ref object for accessing the card's imperative methods.
  */
-export const Card = forwardRef(({emoji, initialShowBack = true, disabled}: Props, ref: Ref<CardRefType>) => {
+export const Card = forwardRef(({emoji, initialShowBack = true, disabled, onClick}: Props, ref: Ref<CardRefType>) => {
   const [showBack, setShowBack] = useState(true);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export const Card = forwardRef(({emoji, initialShowBack = true, disabled}: Props
   const handleCardClick = () => {
     if (disabled) return;
     setShowBack((showBack) => !showBack);
+    onClick();
   }
 
   return(
