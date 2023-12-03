@@ -12,6 +12,7 @@ import { getRandomSubarray, shuffleArray } from '../../../utils/array.utils';
 import { useScreenOrientation } from '../../../hooks/useScreenOrientation';
 // Components
 import { Card } from '../../presentational/Card/Card';
+import { GamePanel } from '../../presentational/GamePanel/GamePanel';
 
 export const Game = () => { 
   const location = useLocation();
@@ -120,17 +121,23 @@ export const Game = () => {
   const horizontalCards = screenOrientation === 'landscape' ? level.horizontalCards : level.verticalCards;
 
   return (
-    <div className="grid gap-4 h-screen w-screen p-4"
-      style={{gridTemplateColumns: `repeat(${verticalCards}, 1fr)`, gridTemplateRows: `repeat(${horizontalCards}, 1fr)`}}>
-      { cards.map((card) => (
-        <Fragment key={card.id}>
-          <Card
-            emoji={card.emoji}
-            disabled={card.isDisabled}
-            initialShowBack={!card.isFlipped}
-            onClick={() => cardClickHandle(card)} />
-        </Fragment>
-      ))}
+    <div className="flex p-2 md:p-4 xl:p-8 h-screen w-screen overflow-hidden" style={{flexDirection: screenOrientation === "landscape" ? "row" : "column"}}>
+      <div className="flex flex-col gap-2 lg:gap-8 mb-2 md:mr-4 lg:mr-8">
+        <GamePanel />
+      </div>
+      <div className="grid gap-2 lg:gap-3 xl:gap-6 mx-auto my-auto"
+        style={{gridTemplateColumns: `repeat(${verticalCards}, 1fr)`, gridTemplateRows: `repeat(${horizontalCards}, 1fr)`,
+        }}>
+        { cards.map((card) => (
+          <Fragment key={card.id}>
+            <Card
+              emoji={card.emoji}
+              disabled={card.isDisabled}
+              initialShowBack={!card.isFlipped}
+              onClick={() => cardClickHandle(card)} />
+          </Fragment>
+        ))}
+      </div>
     </div>
   );
 }

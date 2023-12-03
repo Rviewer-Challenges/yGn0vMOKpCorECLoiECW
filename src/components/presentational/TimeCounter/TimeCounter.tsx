@@ -20,9 +20,9 @@ export const TimeCounter = () => {
   }, []);
 
   return (
-    <div className="text-center">
-      <div className="text-4xl text-primary">🛎️ Time left:</div>
-      <div className={`text-6xl ${counter > 19 ? "text-quaternary" : "text-red"}`}>
+    <div className="flex justify-between">
+      <div className="text-primary whitespace-nowrap">🛎️ Time left:</div>
+      <div className={`${counter > 19 ? "text-quaternary" : "text-red"}`}>
         {counter}
       </div>
     </div>

@@ -4,9 +4,9 @@ type Props = {
 
 export const MoveCounter = ({moves} : Props) => {
   return (
-    <div className="text-center">
-      <div className="text-4xl text-primary">👣 Moves done:</div>
-      <div className="text-6xl text-quaternary">
+    <div className="flex justify-between">
+      <div className="text-primary whitespace-nowrap">👣 Moves done:</div>
+      <div className="text-quaternary">
         {moves}
       </div>
     </div>

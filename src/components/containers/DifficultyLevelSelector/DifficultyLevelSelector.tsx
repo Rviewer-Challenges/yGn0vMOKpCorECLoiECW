@@ -14,7 +14,7 @@ export const DifficultyLevelSelector = () => {
   return (
     <div className="h-screen w-screen bg-cover bg-[url('src/assets/images/background.svg')] flex items-center justify-center">
       <div className="bg-[rgba(255,255,255,0.9)] p-8 m-8 rounded-3xl">
-        <h1 className="text-6xl text-primary mb-8">
+        <h1 className="text-2xl lg:text-6xl text-primary mb-8">
           Select game difficulty:
         </h1>
         <div className="flex flex-col lg:flex-row gap-8">

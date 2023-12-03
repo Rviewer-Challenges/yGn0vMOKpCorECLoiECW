@@ -25,6 +25,8 @@ const router = createBrowserRouter([
 
 export const App = () => {
   return (
-    <RouterProvider router={router} />
+    <div className="bg-cover bg-[url('src/assets/images/background.svg')]">
+      <RouterProvider router={router} />
+    </div>
   );
 }
