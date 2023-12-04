@@ -1,0 +1,59 @@
+{
+  "name": "emoji-memory-game",
+  "author": {
+    "name": "mapten",
+    "url": "https://github.com/mapten"
+  },
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "react-transition-group": "^4.4.5",
+    "ts-node": "^10.9.1",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "7.6.0",
+    "@storybook/addon-interactions": "7.6.0",
+    "@storybook/addon-links": "7.6.0",
+    "@storybook/addon-onboarding": "1.0.8",
+    "@storybook/blocks": "7.6.0",
+    "@storybook/react": "7.6.0",
+    "@storybook/react-vite": "7.6.0",
+    "@storybook/test": "7.6.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.2",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/react-transition-group": "^4.4.9",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "@vitejs/plugin-react": "^4.2.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "eslint-plugin-storybook": "^0.6.15",
+    "jsdom": "^23.0.0",
+    "postcss": "^8.4.31",
+    "storybook": "7.6.0",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vitest": "^0.34.6"
+  }
+}

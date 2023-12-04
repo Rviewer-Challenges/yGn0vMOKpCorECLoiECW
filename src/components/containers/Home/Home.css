@@ -1,0 +1,6 @@
+.stamp {
+  font-family: 'Courier';
+  -webkit-mask-image: url('../../../assets/images/grunge.png');
+  -webkit-mask-size: 200px 50px;
+  mix-blend-mode: multiply;
+}
