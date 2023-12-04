@@ -1,3 +1,6 @@
+// Components
+import { Button } from '../../ui/Button/Button';
+// Styles
 import './GameOver.css';
 
 type Props = {
@@ -18,9 +21,9 @@ export const GameOver = ({ onClose, onStartAgain }: Props) => {
           <div className="text-6xl text-primary pb-8">
             Game over!😰
           </div>
-          <button onClick={startAgainHandler} className="bg-quaternary rounded-lg p-4 text-white text-xl">
+          <Button onClick={startAgainHandler} className="bg-quaternary text-xl lg:text-2xl">
             Start again 🛸
-          </button>
+          </Button>
           <button className="p-4 text-xl bg-tertiary rounded-full absolute -top-10 -right-10" onClick={onClose}>
             ❌
           </button>
