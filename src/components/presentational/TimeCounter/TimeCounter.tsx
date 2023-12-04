@@ -1,4 +1,6 @@
 import { Ref, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+// Configuration
+import { gameConfiguration } from '../../../configuration/game.configuration';
 
 type Props = {
   onTimeUp: () => void;
@@ -10,11 +12,11 @@ export type TimeCounterRefType = {
 }
 
 export const TimeCounter = forwardRef(({onTimeUp}: Props, ref: Ref<TimeCounterRefType>) => {
-  const [counter, setCounter] = useState<number>(60);
+  const [counter, setCounter] = useState<number>(gameConfiguration.timeLimit);
 
   useImperativeHandle(ref, () => ({
     restartCountdown: () => {
-      setCounter(60);
+      setCounter(gameConfiguration.timeLimit);
     },
     stop: () => {
       setCounter(0);

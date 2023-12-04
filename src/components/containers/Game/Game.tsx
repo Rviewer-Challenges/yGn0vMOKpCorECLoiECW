@@ -2,7 +2,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Fragment, createRef, useEffect, useState } from 'react';
 
 // Configuration
-import { emojis, levels } from '../../../configuration/game.configuration';
+import { emojis, gameConfiguration, levels } from '../../../configuration/game.configuration';
 // Models
 import { CardState } from '../../../models/cardState.model';
 import { Level as LevelModel } from '../../../models/level.model';
@@ -97,7 +97,7 @@ export const Game = () => {
         });
 
         setCards(flippedCardsReset);
-      }, 700);
+      }, gameConfiguration.flipBackTime);
     }
   }
 
