@@ -1,6 +1,6 @@
 // Components
 import { Button } from '../../ui/Button/Button';
-import { Modal } from '../../ui/Button/Modal/Modal';
+import { Modal } from '../../ui/Modal/Modal';
 
 type Props = {
   onClose: () => void;

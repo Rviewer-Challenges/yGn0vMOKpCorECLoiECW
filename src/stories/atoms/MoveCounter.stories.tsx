@@ -6,6 +6,7 @@ import { MoveCounter } from '../../components/presentational/MoveCounter/MoveCou
 const meta = {
   title: 'Atoms/MoveCounter',
   component: MoveCounter,
+  decorators: [(story) => <div className="w-40">{story()}</div>],
 } satisfies Meta<typeof MoveCounter>;
 
 type Story = StoryObj<typeof MoveCounter>;

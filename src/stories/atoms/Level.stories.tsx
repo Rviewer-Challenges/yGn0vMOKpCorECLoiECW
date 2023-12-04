@@ -12,9 +12,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Easy = {
   args: {
-    level: "Easy",
-    verticalCards: 4,
-    horizontalCards: 4,
+    level: {
+      name: "Easy",
+      verticalCards: 4,
+      horizontalCards: 4,
+    },
     onClick: () => {},
   },
   render: (args) => <div className="w-56"><Level {...args} /></div>,
@@ -22,9 +24,11 @@ export const Easy = {
 
 export const Medium = {
   args: {
-    level: "Medium",
-    verticalCards: 6,
-    horizontalCards: 4,
+    level: {
+      name: "Medium",
+      verticalCards: 6,
+      horizontalCards: 4,
+    },
     onClick: () => {},
   },
   render: (args) => <div className="w-[300px]"><Level {...args} /></div>,

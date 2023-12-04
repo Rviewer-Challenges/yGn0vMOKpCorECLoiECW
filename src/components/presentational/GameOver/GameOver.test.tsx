@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
@@ -33,7 +33,7 @@ describe('GameOver', () => {
   it('should render the modal', () => {
     render(<GameOver onStartAgain={vi.fn()} onClose={vi.fn()} />);
 
-    const gameOverText = screen.getByText('Game over 😰');
+    const gameOverText = screen.getByText('Game over!😰');
     const startAgainButton = screen.getByText('Start again 🛸');
 
     expect(gameOverText).toBeInTheDocument();

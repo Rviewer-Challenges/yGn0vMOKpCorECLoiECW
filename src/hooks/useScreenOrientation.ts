@@ -27,7 +27,5 @@ export const useScreenOrientation = () => {
 };
 
 const getScreenOrientation = (): OrientationType => {
-  // For browsers that do not support the `screen` object
-  // we can use the width and height of the window to determine the orientation
   return window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
 };

@@ -16,6 +16,11 @@ import { GamePanel, TimeCounterRefType } from '../../presentational/GamePanel/Ga
 import { GameOver } from '../../presentational/GameOver/GameOver';
 import { YouWon } from '../../presentational/YouWon/YouWon';
 
+/**
+ * The Game component represents the main game screen.
+ * It manages the state of the game, including the cards, moves, remaining pairs, and game over/win status.
+ * The component also handles user interactions such as card clicks and game restarts.
+ */
 export const Game = () => {
   const timeCounterRef = createRef<TimeCounterRefType>();
   const location = useLocation();

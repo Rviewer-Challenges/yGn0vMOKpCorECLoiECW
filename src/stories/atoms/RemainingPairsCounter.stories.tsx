@@ -6,6 +6,7 @@ import { RemainingPairsCounter } from '../../components/presentational/Remaining
 const meta = {
   title: 'Atoms/RemainingPairsCounter',
   component: RemainingPairsCounter,
+  decorators: [(story) => <div className="w-40">{story()}</div>],
 } satisfies Meta<typeof RemainingPairsCounter>;
 
 type Story = StoryObj<typeof RemainingPairsCounter>;
