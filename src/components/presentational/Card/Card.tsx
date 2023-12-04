@@ -1,4 +1,4 @@
-import { Ref, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 // Styles
@@ -12,26 +12,16 @@ type Props = {
   onClick: () => void;
 }
 
-export type CardRefType = {
-  reset: () => void;
-}
-
 /**
  * @component
  * @param {React.Ref<CardRefType>} ref - The ref object for accessing the card's imperative methods.
  */
-export const Card = forwardRef(({emoji, initialShowBack = true, disabled, onClick}: Props, ref: Ref<CardRefType>) => {
+export const Card = ({emoji, initialShowBack = true, disabled, onClick}: Props) => {
   const [showBack, setShowBack] = useState(true);
 
   useEffect(() => {
     setShowBack(initialShowBack);
   }, [initialShowBack]);
-
-  useImperativeHandle(ref, () => ({
-    reset() {
-      setShowBack(true);
-    }
-  }));
 
   const handleCardClick = () => {
     if (disabled) return;
@@ -65,4 +55,4 @@ export const Card = forwardRef(({emoji, initialShowBack = true, disabled, onClic
       </CSSTransition>
     </div>
   );
-});
+};
