@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, createRef, useEffect, useState } from 'react';
 
 // Configuration
 import { emojis, levels } from '../../../configuration/game.configuration';
@@ -12,9 +12,11 @@ import { getRandomSubarray, shuffleArray } from '../../../utils/array.utils';
 import { useScreenOrientation } from '../../../hooks/useScreenOrientation';
 // Components
 import { Card } from '../../presentational/Card/Card';
-import { GamePanel } from '../../presentational/GamePanel/GamePanel';
+import { GamePanel, TimeCounterRefType } from '../../presentational/GamePanel/GamePanel';
+import { GameOver } from '../../presentational/GameOver/GameOver';
 
-export const Game = () => { 
+export const Game = () => {
+  const timeCounterRef = createRef<TimeCounterRefType>();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const difficulty = queryParams.get('difficulty');
@@ -22,6 +24,17 @@ export const Game = () => {
   const screenOrientation = useScreenOrientation();
   const [cards, setCards] = useState<CardState[]>([]);
   const [level, setLevel] = useState<LevelModel>(levels[0]);
+  const [moveCount, setMoveCount] = useState<number>(0);
+  const [remainingPairs, setRemainingPairs] = useState<number>(0);
+  const [showGameOver, setShowGameOver] = useState<boolean>(false);
+
+  const disableAllCards = () => {
+    setCards((updatedCards) => updatedCards.map((c) => ({...c, isDisabled: true})));
+  }
+
+  const flipAllCards = () => {
+    setCards((updatedCards) => updatedCards.map((c) => ({...c, isFlipped: true})));
+  }
 
   const cardClickHandle = (card: CardState) => {
     if (card.isMatched || card.isDisabled) return;
@@ -42,7 +55,10 @@ export const Game = () => {
     const flippedCards = updatedCards.filter((c) => c.isFlipped && !c.isMatched);
 
     if (flippedCards.length === 2) {
+      setMoveCount((moveCount) => moveCount + 1);
+
       if (flippedCards[0].emoji === flippedCards[1].emoji) {
+        setRemainingPairs((remainingPairs) => remainingPairs - 1);
         const matchedCards = updatedCards.map((c) => {
           if (c.isFlipped) {
             return {
@@ -81,16 +97,34 @@ export const Game = () => {
         });
 
         setCards(flippedCardsReset);
-      }, 1000);
+      }, 700);
     }
+  }
+
+  const timeUpHandler = () => {
+    setShowGameOver(true);
+    disableAllCards();
+  }
+
+  const startAgainHandler = () => {
+    initializeCards(difficulty as string);
+    timeCounterRef.current?.restartCountdown();
+    setMoveCount(0);
+  }
+
+  const showSolutionHandler = () => {
+    disableAllCards();
+    flipAllCards();
+    timeCounterRef.current?.stop();
   }
 
   const initializeCards = (difficulty: string) => {
     const level = levels.find((level) => level.name === difficulty) as LevelModel;
+    const pairs = level.horizontalCards * level.verticalCards / 2;
 
-    const emojiCount = (level.horizontalCards * level.verticalCards) / 2;
+    setRemainingPairs(pairs);
 
-    const selectedEmojis = getRandomSubarray(emojis, emojiCount);
+    const selectedEmojis = getRandomSubarray(emojis, pairs);
 
     const shuffledEmojis = shuffleArray([...selectedEmojis, ...selectedEmojis]);
 
@@ -123,7 +157,13 @@ export const Game = () => {
   return (
     <div className="flex p-2 md:p-4 xl:p-8 h-screen w-screen overflow-hidden" style={{flexDirection: screenOrientation === "landscape" ? "row" : "column"}}>
       <div className="flex flex-col gap-2 lg:gap-8 mb-2 md:mr-4 lg:mr-8">
-        <GamePanel />
+        <GamePanel
+          ref={timeCounterRef}
+          moves={moveCount}
+          remainingPairs={remainingPairs}
+          onTimeUp={timeUpHandler}
+          onStartAgain={startAgainHandler}
+          onShowSolution={showSolutionHandler} />
       </div>
       <div className="grid gap-2 lg:gap-3 xl:gap-6 mx-auto my-auto"
         style={{gridTemplateColumns: `repeat(${verticalCards}, 1fr)`, gridTemplateRows: `repeat(${horizontalCards}, 1fr)`,
@@ -138,6 +178,7 @@ export const Game = () => {
           </Fragment>
         ))}
       </div>
+      { showGameOver && <GameOver onClose={() => setShowGameOver(false)} onStartAgain={startAgainHandler} />}
     </div>
   );
 }

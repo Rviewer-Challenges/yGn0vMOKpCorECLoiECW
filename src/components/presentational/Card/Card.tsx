@@ -57,7 +57,7 @@ export const Card = forwardRef(({emoji, initialShowBack = true, disabled, onClic
             <div className="hidden md:block md:text-sm lg:text-lg xl:text-2xl origin-bottom-left text-primary">Emoji<br />Memory<br />game</div>
           </div>
           <div className={"front w-full h-full top-0 absolute flex items-center justify-center leading-6 bg-white rounded-md md:rounded-xl " +
-            "text-3xl md:text-5xl lg:text-7xl"}
+            "text-3xl md:text-5xl lg:text-6xl xl:text-7xl"}
           >
             {emoji}
           </div>

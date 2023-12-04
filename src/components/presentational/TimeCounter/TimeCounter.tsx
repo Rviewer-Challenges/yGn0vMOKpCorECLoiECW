@@ -1,18 +1,43 @@
-import { useEffect, useState } from 'react';
+import { Ref, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
-export const TimeCounter = () => {
-  const [counter, setCounter] = useState(60);
+type Props = {
+  onTimeUp: () => void;
+};
+
+export type TimeCounterRefType = {
+  restartCountdown: () => void;
+  stop: () => void;
+}
+
+export const TimeCounter = forwardRef(({onTimeUp}: Props, ref: Ref<TimeCounterRefType>) => {
+  const [counter, setCounter] = useState<number>(60);
+
+  useImperativeHandle(ref, () => ({
+    restartCountdown: () => {
+      setCounter(60);
+    },
+    stop: () => {
+      setCounter(0);
+    }
+  }));
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCounter((prevCounter) => {
-        if (prevCounter === 0) {
-          clearInterval(timer);
-          return prevCounter;
-        }
-        return prevCounter - 1;
-      });
-    }, 1000);
+    let timer: NodeJS.Timeout;
+
+    if (counter > 0) {
+      timer = setInterval(() => {
+        setCounter((prevSeconds) => {
+          const newSeconds = prevSeconds - 1;
+          if (newSeconds === 0) {
+            onTimeUp();
+          }
+          if (newSeconds <= 0) {
+            return 0;
+          }
+          return newSeconds;
+        });
+      }, 1000);
+    }
 
     return () => {
       clearInterval(timer);
@@ -27,4 +52,4 @@ export const TimeCounter = () => {
       </div>
     </div>
   );
-};
+});
