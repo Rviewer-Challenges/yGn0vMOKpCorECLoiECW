@@ -1,13 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 // Components
 import { Card } from './Card';
 
 describe('Card', () => {
-  it('should flip when clicked', async() => {
+  it('should flip when clicked', () => {
     // arrange
     render(<Card emoji="😀" onClick={vi.fn()} />);
 
@@ -15,25 +15,24 @@ describe('Card', () => {
     fireEvent.click(screen.getByRole('button'));
 
     // assert
-    await waitFor(() => expect(screen.getByRole('button')).toHaveClass('flip-exit-done'));
+    expect(screen.getByRole('button')).toHaveAttribute('data-state', 'front');
 
     // act
     fireEvent.click(screen.getByRole('button'));
 
     // assert
-    await waitFor(() => expect(screen.getByRole('button')).toHaveClass('flip-enter-done'));
+    expect(screen.getByRole('button')).toHaveAttribute('data-state', 'back');
   });
 
-  it('should not flip state when disabled', async() => {
+  it('should not flip state when disabled', () => {
     // arrange
-    render(<Card emoji="😀" disabled={true}  onClick={vi.fn()} />);
+    render(<Card emoji="😀" disabled={true} onClick={vi.fn()} />);
 
     // act
     fireEvent.click(screen.getByRole('button'));
 
     // assert
-    await waitFor(() => expect(screen.getByRole('button')).toHaveAttribute('disabled'));
-    await waitFor(() => expect(screen.getByRole('button')).not.toHaveClass('flip-exit-done'));
-    await waitFor(() => expect(screen.getByRole('button')).not.toHaveClass('flip-enter-done'));
+    expect(screen.getByRole('button')).toHaveAttribute('disabled');
+    expect(screen.getByRole('button')).toHaveAttribute('data-state', 'back');
   });
 });

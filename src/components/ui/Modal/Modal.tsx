@@ -14,7 +14,7 @@ export const Modal = ({ onClose, children }: Props) => {
       <div className="p-8 w-full max-w-2xl max-h-full">
         <div className="relative border-8 border-primary bg-white rounded-3xl shadow-lg p-8 text-center modal">
           { children }
-          <button className="p-4 text-xl bg-tertiary rounded-full absolute -top-10 -right-10" onClick={onClose}>
+          <button data-testid="modal-close" className="p-4 text-xl bg-tertiary rounded-full absolute -top-10 -right-10" onClick={onClose}>
             ❌
           </button>
         </div>

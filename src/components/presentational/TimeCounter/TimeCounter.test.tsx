@@ -6,8 +6,6 @@ import '@testing-library/jest-dom';
 import { TimeCounter, TimeCounterRefType } from './TimeCounter';
 import { useRef } from 'react';
 
-vi.useFakeTimers(); // Mock timers
-
 describe('TimeCounter', () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -94,7 +92,7 @@ describe('TimeCounter', () => {
     expect(screen.getByTestId('time-counter')).toHaveTextContent('60');
   });
 
-  it('should stop the countdown when stop is called', async() => {
+  it('should stop the countdown when stop is called', () => {
     const Wrapper = () => {
       const componentRef = useRef<TimeCounterRefType>(null);
   
