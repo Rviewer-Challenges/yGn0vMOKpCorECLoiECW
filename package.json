@@ -1,7 +1,11 @@
 {
   "name": "emoji-memory-game",
+  "author": {
+    "name": "mapten",
+    "url": "https://github.com/mapten"
+  },
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
