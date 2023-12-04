@@ -14,6 +14,7 @@ import { useScreenOrientation } from '../../../hooks/useScreenOrientation';
 import { Card } from '../../presentational/Card/Card';
 import { GamePanel, TimeCounterRefType } from '../../presentational/GamePanel/GamePanel';
 import { GameOver } from '../../presentational/GameOver/GameOver';
+import { YouWon } from '../../presentational/YouWon/YouWon';
 
 export const Game = () => {
   const timeCounterRef = createRef<TimeCounterRefType>();
@@ -27,6 +28,7 @@ export const Game = () => {
   const [moveCount, setMoveCount] = useState<number>(0);
   const [remainingPairs, setRemainingPairs] = useState<number>(0);
   const [showGameOver, setShowGameOver] = useState<boolean>(false);
+  const [showYouWon, setShowYouWon] = useState<boolean>(false);
 
   const disableAllCards = () => {
     setCards((updatedCards) => updatedCards.map((c) => ({...c, isDisabled: true})));
@@ -58,7 +60,15 @@ export const Game = () => {
       setMoveCount((moveCount) => moveCount + 1);
 
       if (flippedCards[0].emoji === flippedCards[1].emoji) {
-        setRemainingPairs((remainingPairs) => remainingPairs - 1);
+        setRemainingPairs((remainingPairs) => {
+          const remainingPairsAfterMatch = remainingPairs - 1;
+
+          if (remainingPairsAfterMatch === 0) {
+            youWonHandler();
+          }
+
+          return remainingPairsAfterMatch;
+        });
         const matchedCards = updatedCards.map((c) => {
           if (c.isFlipped) {
             return {
@@ -117,6 +127,13 @@ export const Game = () => {
     flipAllCards();
     timeCounterRef.current?.stop();
   }
+
+  const youWonHandler = () => {
+    setShowYouWon(true);
+    disableAllCards();
+    timeCounterRef.current?.stop();
+  }
+
 
   const initializeCards = (difficulty: string) => {
     const level = levels.find((level) => level.name === difficulty) as LevelModel;
@@ -179,6 +196,7 @@ export const Game = () => {
         ))}
       </div>
       { showGameOver && <GameOver onClose={() => setShowGameOver(false)} onStartAgain={startAgainHandler} />}
+      { showYouWon && <YouWon onClose={() => setShowYouWon(false)} onStartAgain={startAgainHandler} />}
     </div>
   );
 }
